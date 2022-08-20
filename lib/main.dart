@@ -10,6 +10,7 @@ void main() {
     //navigatorKey: Get.key,
     initialRoute: '/',
     getPages: MyRoutes.routes,
+    title: 'Gestao de Conhecimento',
     //home: MyHomePage(),
     theme: ThemeData(
       primaryColor: Colors.yellow[700],
