@@ -5,58 +5,87 @@ import 'package:gestao_conhecimento/app/ui/web/widgets/drawer.dart';
 
 class Home extends StatelessWidget {
   final controller = Get.put(Controller(), permanent: true);
+
+  Home({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    double largura = MediaQuery.of(context).size.width;
+    double altura = MediaQuery.of(context).size.height;
+
     return Scaffold(
       key: controller.scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Colors.blue[700],
-        leading: Container(
-          //width: 55,
-          child: Material(
-            color: Colors.blue[700],
-            child: InkWell(
-              borderRadius: BorderRadius.circular(55),
-              splashColor: Colors.blue[500],
-              onTap: () {
-                controller.openDrawer();
-              },
-              child: Icon(Icons.menu),
-            ),
-          ),
-        ),
-        title: Text('INICIO'),
-      ),
-      drawer: MainDrawer(),
-      body: Center(
+      drawer: const MainDrawer(),
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'QUANTIDADE DE CLIQUE',
-            ),
-            GetBuilder<Controller>(
-                builder: (_) => Text(
-                      '${controller.count}',
-                      style: Theme.of(context).textTheme.headline4,
-                    )),
-            ElevatedButton(
-              child: Text('Next Route'),
-              onPressed: () {
-                Get.toNamed('/oring');
-              },
-            ),
-            ElevatedButton(
-              child: Text('mundo 1'),
-              onPressed: () {
-                Get.toNamed('/mundo', arguments: ["mundo 1"]);
-              },
-            ),
-            ElevatedButton(
-              child: Text('mundo 2'),
-              onPressed: () {
-                Get.toNamed('/mundo', arguments: ["mundo 2"]);
-              },
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  color: Colors.blue[600],
+                  constraints: const BoxConstraints(
+                    minHeight: 0,
+                    minWidth: 0,
+                  ),
+                  height: altura,
+                  //width: 300,
+                  child: const MainDrawer(),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      color: Colors.blue[700],
+                      constraints: const BoxConstraints(
+                        minHeight: 0,
+                        minWidth: 0,
+                      ),
+                      height: 56,
+                      width: largura - 200,
+                      child: AppBar(
+                        backgroundColor: Colors.blue[700],
+                        leading: Material(
+                          color: Colors.blue[700],
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(55),
+                            splashColor: Colors.blue[500],
+                            onTap: () {
+                              controller.openDrawer();
+                            },
+                            child: const Icon(Icons.menu),
+                          ),
+                        ),
+                        title: const Text('INICIO'),
+                      ),
+                    ),
+                    Container(
+                      color: Colors.blue[50],
+                      constraints: const BoxConstraints(
+                        minHeight: 0,
+                        minWidth: 0,
+                      ),
+                      height: altura - 56,
+                      width: largura - 200,
+                      child: SingleChildScrollView(
+                        physics: NeverScrollableScrollPhysics(),
+                        //reverse: true,
+                        child: Column(
+                          children: [
+                            const Text(
+                                'ggggggdfffffffffffffffffffffffffffffffffffffffffffffffffffffjhgddddddddddddd dddddd'),
+                            Container(
+                              color: Colors.blue[700],
+                              height: 100,
+                              width: 500,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
@@ -64,7 +93,7 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.find<Controller>().increment(),
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
